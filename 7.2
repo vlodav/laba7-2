@@ -1,0 +1,50 @@
+#include <iostream>
+#include<string>
+using namespace std;
+struct Point {
+	double x;
+	double y;
+};
+
+struct Circle {
+	double radius;
+	Point center;
+};
+int main()
+{
+	system("chcp 1251");
+	const int NUM_CIRCLES = 10;
+
+	Circle circles[NUM_CIRCLES];
+
+	// Ввод информации о каждой окружности
+	for (int i = 0; i < NUM_CIRCLES; i++) {
+		cout << "— Окружность " << i + 1 << " —" << endl;
+
+		cout << "Введите радиус окружности: ";
+		cin >> circles[i].radius;
+
+		cout << "Введите координату X центра окружности: ";
+		cin >> circles[i].center.x;
+
+		cout << "Введите координату Y центра окружности: ";
+		cin >> circles[i].center.y;
+	}
+
+	// Нахождение окружности с наименьшим радиусом
+	int minRadiusIndex = 0;
+	double minRadius = circles[0].radius;
+
+	for (int i = 1; i < NUM_CIRCLES; i++) {
+		if (circles[i].radius < minRadius) {
+			minRadius = circles[i].radius;
+			minRadiusIndex = i;
+		}
+	}
+
+	// Вывод координат центра окружности с наименьшим радиусом
+	cout << endl;
+	cout << "Координаты центра окружности с наименьшим радиусом (" << minRadius << "): " << endl;
+	cout << "X: " << circles[minRadiusIndex].center.x << endl;
+	cout << "Y: " << circles[minRadiusIndex].center.y << endl;
+}
