@@ -1,50 +1,75 @@
 #include <iostream>
-#include<string>
+#include <iomanip>
+#include <string>
 using namespace std;
+
 struct Point {
-	double x;
-	double y;
+    double x;
+    double y;
 };
 
 struct Circle {
-	double radius;
-	Point center;
+    double radius;
+    Point center;
 };
+
 int main()
 {
-	system("chcp 1251");
-	const int NUM_CIRCLES = 10;
+    setlocale(LC_ALL, "Russian");
+    const int NUM_CIRCLES = 10;
 
-	Circle circles[NUM_CIRCLES];
+    Circle circles[NUM_CIRCLES];
 
-	// Ввод информации о каждой окружности
-	for (int i = 0; i < NUM_CIRCLES; i++) {
-		cout << "— Окружность " << i + 1 << " —" << endl;
+    // Ввод информации о каждой окружности
+    for (int i = 0; i < NUM_CIRCLES; i++) {
+        cout << "— Окружность " << i + 1 << " —" << endl;
 
-		cout << "Введите радиус окружности: ";
-		cin >> circles[i].radius;
+        cout << "Введите радиус окружности: ";
+        cin >> circles[i].radius;
 
-		cout << "Введите координату X центра окружности: ";
-		cin >> circles[i].center.x;
+        cout << "Введите координату X центра окружности: ";
+        cin >> circles[i].center.x;
 
-		cout << "Введите координату Y центра окружности: ";
-		cin >> circles[i].center.y;
-	}
+        cout << "Введите координату Y центра окружности: ";
+        cin >> circles[i].center.y;
 
-	// Нахождение окружности с наименьшим радиусом
-	int minRadiusIndex = 0;
-	double minRadius = circles[0].radius;
+        cout << endl;
+    }
 
-	for (int i = 1; i < NUM_CIRCLES; i++) {
-		if (circles[i].radius < minRadius) {
-			minRadius = circles[i].radius;
-			minRadiusIndex = i;
-		}
-	}
+    // Вывод таблицы с информацией о каждой окружности
+    cout << "Таблица окружностей: " << endl;
+    cout << "------------------------------------------------" << endl;
+    cout << setw(13) << left << "Окружность";
+    cout << setw(10) << left << "Радиус";
+    cout << setw(13) << left << "X-координата";
+    cout << setw(13) << left << "Y-координата" << endl;
+    cout << "------------------------------------------------" << endl;
 
-	// Вывод координат центра окружности с наименьшим радиусом
-	cout << endl;
-	cout << "Координаты центра окружности с наименьшим радиусом (" << minRadius << "): " << endl;
-	cout << "X: " << circles[minRadiusIndex].center.x << endl;
-	cout << "Y: " << circles[minRadiusIndex].center.y << endl;
+    for (int i = 0; i < NUM_CIRCLES; i++) {
+        cout << setw(13) << left << i + 1;
+        cout << setw(10) << left << circles[i].radius;
+        cout << setw(13) << left << circles[i].center.x;
+        cout << setw(13) << left << circles[i].center.y << endl;
+    }
+
+    cout << "------------------------------------------------" << endl;
+
+    // Нахождение окружности с наименьшим радиусом
+    int minRadiusIndex = 0;
+    double minRadius = circles[0].radius;
+
+    for (int i = 1; i < NUM_CIRCLES; i++) {
+        if (circles[i].radius < minRadius) {
+            minRadius = circles[i].radius;
+            minRadiusIndex = i;
+        }
+    }
+
+    // Вывод координат центра окружности с наименьшим радиусом
+    cout << endl;
+    cout << "Координаты центра окружности с наименьшим радиусом (" << minRadius << "): " << endl;
+    cout << "X: " << circles[minRadiusIndex].center.x << endl;
+    cout << "Y: " << circles[minRadiusIndex].center.y << endl;
+
+    return 0;
 }
